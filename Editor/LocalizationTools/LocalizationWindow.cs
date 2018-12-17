@@ -66,7 +66,7 @@ namespace Icarus.UnityGameFramework.Editor
         private const string LastLabel = "Last";
         private const string FontsCountLabel = "Fonts Count";
         private const string Missing = "Missing";
-        private const string DeleteLanguageMessage = "这是危险操作,如果开启了删除语言并删除配置,将会删除所有的语言配置";
+        private const string DeleteLanguageMessage = "这是危险操作,如果开启了{0},将会删除语言配置";
         private const string CancelLabel = "cancel";
         #endregion
 
@@ -758,7 +758,7 @@ namespace Icarus.UnityGameFramework.Editor
             {
                 if (GUILayout.Button(RemoveAllLanguageLabel))
                 {
-                    if (EditorUtility.DisplayDialog(WarningTitle,DeleteLanguageMessage,ConfirmLabel,CancelLabel))
+                    if (EditorUtility.DisplayDialog(WarningTitle,string.Format(DeleteLanguageMessage,RemoveLanguageAndDeleteConfigFileLabel),ConfirmLabel,CancelLabel))
                     {
                         _deleteAllLanguageFile();
                         _clear();
@@ -784,7 +784,7 @@ namespace Icarus.UnityGameFramework.Editor
                             EditorGUILayout.Foldout(_showState[languageName], languageName, true);
                         if (GUILayout.Button(RemoveLabel))
                         {
-                            if (EditorUtility.DisplayDialog(WarningTitle, DeleteLanguageMessage, ConfirmLabel,
+                            if (EditorUtility.DisplayDialog(WarningTitle, string.Format(DeleteLanguageMessage,RemoveLanguageAndDeleteConfigFileLabel), ConfirmLabel,
                                 CancelLabel))
                             {
                                 _showState.Remove(languageName);
